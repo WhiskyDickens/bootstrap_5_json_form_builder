@@ -15,3 +15,16 @@ pre {
 #form-preview {
   flex: 1
 }
+.form-control.error {
+  border-color: #b71717;
+  box-shadow: 0px 0px 2px #ca0505;
+}
+.input-error {
+  color: #b33535;
+  font-size: .8em;
+  font-weight: 600;
+}
+label small {
+  font-weight: 800;
+  color: #b33535;
+}
