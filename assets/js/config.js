@@ -16,6 +16,7 @@ const appVersion = localStorage.getItem("app-version") ? localStorage.getItem("a
 // List of app versions available
 const appVersions = {
   0: "php",
+  1: "python",
 };
 // Set entry points for each app version (for ajax)
 const ajaxEndpoints = {
@@ -23,7 +24,11 @@ const ajaxEndpoints = {
     site: "index.php",
     test: "test.php",
   },
+  python: {
+    site: "index.py",
+    test: "test.py",
+  },
 };
 
 // If user is logged in, load their account. Otherwise load the demo account
-const username = localStorage.getItem("username") ? localStorage.getItem("username") : "demo";
+let username = localStorage.getItem("username") ? localStorage.getItem("username") : "demo";
