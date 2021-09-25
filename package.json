@@ -1,0 +1,25 @@
+{
+  "name": "formula",
+  "version": "1.0.0",
+  "description": "Bootstrap 5 JSON form builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhiskyDickens/formula.git"
+  },
+  "author": "Simon Taylor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WhiskyDickens/formula/issues"
+  },
+  "homepage": "https://github.com/WhiskyDickens/formula#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "bootstrap": "^5.1.1",
+    "bootstrap-select": "^1.13.18",
+    "jquery": "^3.6.0"
+  }
+}
