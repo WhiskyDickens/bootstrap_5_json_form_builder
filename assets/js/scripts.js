@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
     $.get(`forms/${username}/user.json`, function (userData) {
       // Requires a password?
       if (userData.password !== false && !localStorage.getItem("authenticated")) {
-        let input = prompt(`Password for ${username}:\nType "pass" for demo account`, "");
+        let input = prompt(`Password for ${username}:\nType "demo" for demo account`, "");
         // Is user validated?
         if (input === userData.password) {
           authenticateUser(username, userData);
@@ -51,7 +51,7 @@ jQuery(document).ready(function ($) {
     if (creation) {
       let response = false;
       $.ajax({
-        url: `langs/${appVersion}/${ajaxEndpoints[appVersion]}`,
+        url: `langs/${appVersion}/${ajaxEndpoints[appVersion]["site"]}`,
         data: { "create-user": true, username: username, password: password },
         type: "post",
         // Created account
@@ -143,7 +143,7 @@ jQuery(document).ready(function ($) {
   function notification(heading, body, type) {
     const randNum = Math.floor(Math.random() * 10000 + 1);
     const randId = `toast-${randNum}`;
-    const notification = `<div id="${randId}" class="toast ${type}" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="5000">
+    const notification = `<div id="${randId}" class="toast ${type}" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="500">
       <div class="toast-header">
         <strong class="me-auto">${heading}</strong>
         <small class="text-muted">just now</small>
