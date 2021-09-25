@@ -1,0 +1,17 @@
+.toast.success {
+  background: #c3ffc5
+}
+.toast.info {
+  background: #ffdfc3
+}
+.toast.error {
+  background: #ffc3c3
+}
+pre {
+  background: #e4e4e4;
+  padding: 1rem;
+  border-left: 5px solid #212529;
+}
+#form-preview {
+  flex: 1
+}
