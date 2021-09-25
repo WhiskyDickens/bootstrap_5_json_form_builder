@@ -2,7 +2,15 @@
  * Global config file
  */
 
-// Set default app version
+// Set root directory, based on file location
+let appRoot;
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+  appRoot = "./";
+} else {
+  appRoot = "https://simtaylor.com/web-apps/formula/";
+}
+
+// Set default app version (default to PHP)
 const appVersion = localStorage.getItem("app-version") ? localStorage.getItem("app-version") : "php";
 
 // List of app versions available
@@ -11,9 +19,11 @@ const appVersions = {
 };
 // Set entry points for each app version (for ajax)
 const ajaxEndpoints = {
-  php: "index.php",
+  php: {
+    site: "index.php",
+    test: "test.php",
+  },
 };
 
-// Set current user in local storage
-let randomUsername = `user${Math.floor(Math.random() * 10000 + 1)}`;
-const username = localStorage.getItem("username") ? localStorage.getItem("username") : randomUsername;
+// If user is logged in, load their account. Otherwise load the demo account
+const username = localStorage.getItem("username") ? localStorage.getItem("username") : "demo";
