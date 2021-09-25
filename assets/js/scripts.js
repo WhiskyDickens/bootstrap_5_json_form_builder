@@ -10,16 +10,16 @@ jQuery(document).ready(function ($) {
 
   // Set username
   function setUser(username) {
-    // Remove aut token
+    // Remove auth token
     localStorage.removeItem("authenticated");
     getUser(username);
   }
 
   // Get user's information
-  function getUser(username = null) {
+  function getUser(username) {
     // If username not set, grab it from localStorage
     if (!username) {
-      let username = localStorage.getItem("username");
+      username = localStorage.getItem("username");
     }
     $.get(`forms/${username}/user.json`, function (userData) {
       // Requires a password?
@@ -41,14 +41,13 @@ jQuery(document).ready(function ($) {
       }
     }).fail(function () {
       console.log(`User ${username} not found`);
-      createUser(username);
     });
   }
 
   // Create user
-  function createUser(username, password) {
-    let creation = prompt(`Create a password for ${username}:\n(leave blank if you don't want authentication)`, `test`);
-    if (creation) {
+  function createUser(username) {
+    let password = prompt(`Create a password for ${username}:\n(leave blank if you don't want authentication)`, `test`);
+    if (password || password === "") {
       let response = false;
       $.ajax({
         url: `langs/${appVersion}/${ajaxEndpoints[appVersion]["site"]}`,
@@ -56,11 +55,13 @@ jQuery(document).ready(function ($) {
         type: "post",
         // Created account
         success: function (data) {
+          console.log(data);
           notification("Account", `Account created for ${username}`, "success");
           setUser(username);
         },
         // Account couldn't be created
-        error: function () {
+        error: function (data) {
+          console.log(data);
           notification("Account", `Couldn't create an account for ${username}`, "error");
         },
       });
@@ -162,6 +163,8 @@ jQuery(document).ready(function ($) {
     // Populate user's forms dropdown
     const userFormSelect = $('select[name="user-forms"]');
     $(userFormSelect).find(`option:not(:first-child)`).remove();
+    // Clear preview and options
+    $("#form-preview, #form-options").html("");
     $.each(userData.forms, function (key, form_id) {
       const formData = getForm(username, form_id);
       const selected = key === 0 ? " selected" : "";
@@ -172,6 +175,12 @@ jQuery(document).ready(function ($) {
       }
     });
   }
+  // Change app version
+  $('select[name="app-version"]').on("change", function () {
+    const version = $(this).val();
+    localStorage.setItem("app-version", version);
+    window.location.reload();
+  });
 
   // Change username
   $("#login").on("click", function () {
@@ -181,7 +190,7 @@ jQuery(document).ready(function ($) {
 
   // Select form
   $('select[name="user-forms"]').on("change", function () {
-    const form = $(this).val();
-    editForm(username, form);
+    const form_id = $(this).val();
+    editForm(localStorage.getItem("username"), form_id);
   });
 });
