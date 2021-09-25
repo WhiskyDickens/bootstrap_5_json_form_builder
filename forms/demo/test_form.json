@@ -1,15 +1,24 @@
 {
-  "form_name": "Form 1",
+  "form_name": "Test form",
+  "form_id": "demo_test_form",
   "last_updated": 1632572471,
+  "custom_endpoint": false,
+  "custom_css": false,
+  "custom_js": false,
   "groups": {
     "group_1": {
-      "id": "group_1",
       "order": 0,
       "width": "6",
       "fields": ["email"],
-      "requirements": false,
       "custom_classes": false,
-      "custom_id": false
+      "requirements": false
+    },
+    "group_2": {
+      "order": 1,
+      "width": "12",
+      "fields": ["submit"],
+      "custom_classes": "mt-3 text-end",
+      "requirements": false
     }
   },
   "fields": {
@@ -19,11 +28,13 @@
       "required": true,
       "label": "Email address",
       "value": false,
-      "placeholder": "Enter your email address",
-      "help": "Please enter a valid email address",
-      "format": "(.*)@(.*).(.*)",
+      "placeholder": "john@example.com",
+      "tooltip_position": "right",
+      "help": "Enter your email address",
+      "size": "md",
       "custom_classes": false,
-      "validation": {
+      "pattern": "(.*)\\@(.*)\\.([a-z]{2,})",
+      "messages": {
         "empty": "You must enter an email address",
         "format": "Please enter a valid email address"
       },
@@ -35,11 +46,14 @@
     },
     "submit": {
       "tag": "button",
-      "text": "Sign up",
-      "required": true,
+      "type": "submit",
+      "value": "Submit",
+      "size": "md",
+      "color": "primary",
       "requirements": {
-        "fields": false,
-        "groups": false
+        "group_1": {
+          "email": "valid"
+        }
       },
       "unavailable": "disable"
     }
