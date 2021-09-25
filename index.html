@@ -4,7 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formula | Quickly build your perfect form</title>
+    <title>Formula | Bootstrap 5 JSON form builder</title>
   </head>
-  <body></body>
+  <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css" />
+  <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/vendor/bootstrap-select.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-2 shadow">
+      <a class="navbar-brand col-md-3 col-lg-1 mr-0 px-3" href="#">Form<em>ula</em></a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="col pe-3 input-group">
+        <span class="input-group-text" id="basic-addon1">App version</span>
+        <select name="app-version" class="form-select" aria-label="Default select example">
+          <option selected disabled>App version</option>
+        </select>
+      </div>
+      <div class="col pe-3 input-group">
+        <span class="input-group-text" id="basic-addon2">User</span>
+        <input name="username" class="form-control form-control-dark" type="text" placeholder="Username" aria-label="Username" />
+        <button class="btn btn-primary" type="button" id="login">Login</button>
+      </div>
+      <div class="col pe-3 input-group">
+        <span class="input-group-text" id="basic-addon3">Form</span>
+        <select name="user-forms" class="form-select" aria-label="Default select example">
+          <option selected disabled>Select a form</option>
+        </select>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block bg-light sidebar collapse">
+          <div class="sidebar-sticky pt-3">
+            <section id="form-options"></section>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <section id="form-preview"></section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11"></div>
+
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/fontawesome.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/vendor/bootstrap-select.min.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script type="module" src="assets/js/form_constructor.js"></script>
+    <script type="module" src="assets/js/scripts.js"></script>
+  </body>
 </html>
