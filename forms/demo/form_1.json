@@ -1,0 +1,47 @@
+{
+  "form_name": "Form 1",
+  "last_updated": 1632572471,
+  "groups": {
+    "group_1": {
+      "id": "group_1",
+      "order": 0,
+      "width": "6",
+      "fields": ["email"],
+      "requirements": false,
+      "custom_classes": false,
+      "custom_id": false
+    }
+  },
+  "fields": {
+    "email": {
+      "tag": "input",
+      "type": "email",
+      "required": true,
+      "label": "Email address",
+      "value": false,
+      "placeholder": "Enter your email address",
+      "help": "Please enter a valid email address",
+      "format": "(.*)@(.*).(.*)",
+      "custom_classes": false,
+      "validation": {
+        "empty": "You must enter an email address",
+        "format": "Please enter a valid email address"
+      },
+      "requirements": {
+        "fields": false,
+        "groups": false
+      },
+      "unavailable": "hide"
+    },
+    "submit": {
+      "tag": "button",
+      "text": "Sign up",
+      "required": true,
+      "requirements": {
+        "fields": false,
+        "groups": false
+      },
+      "unavailable": "disable"
+    }
+  }
+}
