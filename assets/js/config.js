@@ -10,8 +10,6 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   appRoot = "https://simtaylor.com/web-apps/formula/";
 }
 
-console.log(appRoot);
-
 // Set default app version (default to PHP)
 const appVersion = localStorage.getItem("app-version") ? localStorage.getItem("app-version") : "php";
 
