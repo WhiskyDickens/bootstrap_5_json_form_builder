@@ -2,3 +2,4 @@ node_modules
 forms
 !forms/demo
 langs/python/__pycache__
+logs/
