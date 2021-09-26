@@ -17,6 +17,6 @@ Formula allows users to create Bootstrap 5 forms in a drag-and-drop interface, w
 
 - Run your Apache server.
 - Ensure your httpd.conf file has a cgi-script handler for .py files
-- Go to **/langs/pytho/n** and change the path in each file to your own executable Python file
+- Go to **/langs/pytho/n** and change the shebang in each file to your own executable Python file
 - Run the following in cmd/terminal:
   - `pip install simplejson`
