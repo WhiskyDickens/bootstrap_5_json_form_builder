@@ -27,7 +27,7 @@ jQuery(document).ready(function ($) {
     if (Object.keys(error).length === 0) {
       $.ajax({
         url: $(this).attr("action"),
-        data: $(this).serialize(),
+        data: $(this).serialize() + `&debug={"username":"${username}", "form":"${form}"}`,
         type: "post",
         complete: function (data) {
           console.log(data);
