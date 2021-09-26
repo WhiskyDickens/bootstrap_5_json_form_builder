@@ -23,9 +23,9 @@ jQuery(document).ready(function ($) {
     if (!username) {
       username = localStorage.getItem("username");
     }
-    $.get({ url: `forms/${username}/user.json`, cache: false }, function (userData) {
+    $.get({ url: `${appRoot}forms/${username}/user.json`, cache: false }, function (userData) {
       // Requires a password?
-      if (userData.password != false && !localStorage.getItem("authenticated")) {
+      if (userData.password != false && userData.password !== "false" && !localStorage.getItem("authenticated")) {
         let input = prompt(`Password for ${username}:\nType "demo" for demo account`, "");
         // Is user validated?
         if (input === userData.password) {
@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
       password = password ? password : false;
       let response = false;
       $.ajax({
-        url: `langs/${appVersion}/${ajaxEndpoints[appVersion]["site"]}`,
+        url: `${appRoot}langs/${appVersion}/${ajaxEndpoints[appVersion]["site"]}`,
         data: { "create-user": true, username: username, password: password },
         type: "post",
         cache: false,
@@ -94,7 +94,7 @@ jQuery(document).ready(function ($) {
   function getForm(username, form_id, notify = false) {
     let response = false;
     $.ajax({
-      url: `forms/${username}/${form_id}.json`,
+      url: `${appRoot}forms/${username}/${form_id}.json`,
       type: "get",
       dataType: "json",
       async: false,
