@@ -12,10 +12,10 @@
     // Make sure all fields are present
     if(isset($_POST['username']) && isset($_POST['password'])) {
       $username = $_POST['username'];
-      $password = $_POST['password'];
+      $password = $_POST['password'] === "" ? 0 : $_POST['password'];
       // Check username isn't taken
       if(!file_exists(APP_PATH ."forms/$username")) {
-        // Create directory
+        // Create user directory
         mkdir(APP_PATH ."forms/$username", 0755);
         // Create user file
         $user_file = fopen(APP_PATH ."forms/$username/user.json", "w");
