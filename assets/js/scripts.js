@@ -1,3 +1,5 @@
+"use strict";
+
 import { formConstructor } from "./form_constructor.js";
 
 jQuery(document).ready(function ($) {
@@ -21,9 +23,9 @@ jQuery(document).ready(function ($) {
     if (!username) {
       username = localStorage.getItem("username");
     }
-    $.get(`forms/${username}/user.json`, function (userData) {
+    $.get({ url: `forms/${username}/user.json`, cache: false }, function (userData) {
       // Requires a password?
-      if (userData.password !== false && !localStorage.getItem("authenticated")) {
+      if (userData.password != false && !localStorage.getItem("authenticated")) {
         let input = prompt(`Password for ${username}:\nType "demo" for demo account`, "");
         // Is user validated?
         if (input === userData.password) {
@@ -40,28 +42,29 @@ jQuery(document).ready(function ($) {
         authenticateUser(username, userData);
       }
     }).fail(function () {
-      console.log(`User ${username} not found`);
+      createUser(username);
+      notification("Account", `Account ${username} not found`, "error");
     });
   }
 
   // Create user
   function createUser(username) {
-    let password = prompt(`Create a password for ${username}:\n(leave blank if you don't want authentication)`, `test`);
+    let password = prompt(`Create a password for ${username}:\n(leave blank if you don't want authentication)`, ``);
     if (password || password === "") {
+      password = password ? password : false;
       let response = false;
       $.ajax({
         url: `langs/${appVersion}/${ajaxEndpoints[appVersion]["site"]}`,
         data: { "create-user": true, username: username, password: password },
         type: "post",
+        cache: false,
         // Created account
         success: function (data) {
-          console.log(data);
           notification("Account", `Account created for ${username}`, "success");
           setUser(username);
         },
         // Account couldn't be created
         error: function (data) {
-          console.log(data);
           notification("Account", `Couldn't create an account for ${username}`, "error");
         },
       });
@@ -95,6 +98,7 @@ jQuery(document).ready(function ($) {
       type: "get",
       dataType: "json",
       async: false,
+      cache: false,
       success: function (formData) {
         response = formData;
         if (notify === true) {
@@ -191,6 +195,8 @@ jQuery(document).ready(function ($) {
   // Select form
   $('select[name="user-forms"]').on("change", function () {
     const form_id = $(this).val();
-    editForm(localStorage.getItem("username"), form_id);
+    if (form_id) {
+      editForm(localStorage.getItem("username"), form_id);
+    }
   });
 });
