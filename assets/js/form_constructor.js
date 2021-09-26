@@ -5,7 +5,7 @@ export function formConstructor(form, $) {
   const fields = form.fields;
 
   // Start creating the HTML
-  const endpoint = form.custom_endpoint ? form.custom_endpoint : `./langs/${appVersion}/${ajaxEndpoints[appVersion]["test"]}`;
+  const endpoint = form.custom_endpoint ? form.custom_endpoint : `${appRoot}langs/${appVersion}/${ajaxEndpoints[appVersion]["test"]}`;
   let html = `<form id='${form.form_id}' class='test-form' action='${endpoint}' action='post'><div class="row">`;
   let inlineScript = `<script>jQuery(document).ready(function($){`;
 
